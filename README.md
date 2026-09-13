@@ -5,6 +5,17 @@ This repository is also the source code accompanying the
 [*GAL-LINE: How to Make A Very Serious Game With JavaScript*](https://homogaragensis.github.io/gal-line-book)
 development book.
 
+## Development workflow
+The workflow is the following:
+
+- On branch `main` we keep the actual current game release, which for now is not still available.
+When branch main gets updates, you will hear news on reddit and itch.io!
+- On branch `dev` we merge the chapter branches, which are related to the book. Indeed, each time we want to make a conceptual step forward we:
+    1. Merge the current `chapterN` branch onto `dev`
+    2. Create the new `chapterN+1` branch
+    this will tipically also be followed shortly by the release of a new chapter in the book.
+- On branches `chapterN` we develop the actual game!!
+
 ## License
 
 The licensing of an openly developed, commercial product is complicated.
