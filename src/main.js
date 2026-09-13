@@ -3,7 +3,7 @@
   canvas.width = 1280;
   canvas.width = 680;
 
-  document.documentElement.setProperty(
+  document.documentElement.style.setProperty(
     "--viewport-aspect", canvas.width / canvas.height
   );
 })();
