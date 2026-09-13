@@ -1,5 +1,6 @@
 :root {
   --game-margin: 24px;
+  --viewport-aspect: 1; /* Set by main.js */
 }
 
 * {
@@ -28,4 +29,18 @@ body {
 
 .hidden {
   display: none;
+}
+
+.game-area {
+  position: relative;
+  /* Scale the game to fit the available viewport while
+   * preserving the aspect ratio defined by the js. */
+  width: min(100%, calc((100vh - 2 * var(--game-margin)) * var(--viewport-aspect)));
+  aspect-ratio: var(--viewport-aspect);
+}
+
+#renderCanvas {
+  display: block;
+  width: 100%;
+  height: 100%;
 }
