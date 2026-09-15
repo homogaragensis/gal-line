@@ -1,6 +1,36 @@
 import { Vec2 } from "./maths.js";
 import { Config } from "./config.js";
 
+function createCamera(zoom = 1) {
+  let pos = new Vec2(0, 0);
+
+  function screenHalfSize() {
+    return new Vec2(
+      Config.viewport.width, Config.viewport.height
+    ).scale(1 / (2 * zoom));
+  }
+
+  return {
+    get pos() { return pos; },
+    get zoom() { return zoom; },
+
+    lookAt(target) {
+      pos.assign(target);
+      pos.sub(screenHalfSize());
+    },
+
+    move(delta) {
+      pos.add(delta);
+    },
+
+    setZoom(amount) {
+      pos.add(screenHalfSize());
+      zoom = amount;
+      pos.sub(screenHalfSize());
+    }
+  };
+}
+
 (() => {
   const canvas = document.getElementById("renderCanvas");
 
@@ -42,11 +72,21 @@ import { Config } from "./config.js";
     },
   };
 
+
+  const camera = createCamera();
+  camera.lookAt(new Vec2(canvas.width, canvas.height).scale(0.5));
+
   ctx.fillStyle = Config.viewport.clearColor;
   ctx.fillRect(0, 0, canvas.width, canvas.height);
+
+  ctx.save();
+  ctx.scale(camera.zoom, camera.zoom);
+  ctx.translate(-camera.pos.x, -camera.pos.y);
 
   for (const thing in Scene) {
     const e = Scene[thing];
     ctx.drawImage(e.img, e.pos.x, e.pos.y);
   }
+
+  ctx.restore();
 })();
