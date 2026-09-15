@@ -4,4 +4,13 @@ export const Config = {
     height: 680,
     clearColor: "#9999ff"
   },
+  images: {
+    chicken: "pollopunk",
+    leg: "gambanormale",
+    background: "background"
+  },
+  scene: {
+    groundY: 500,
+    backgroundY: 370
+  }
 };
