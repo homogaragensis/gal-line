@@ -10,7 +10,7 @@ export const Config = {
     background: "background"
   },
   scene: {
-    groundY: 500,
+    groundY: 470,
     backgroundY: 370
   }
 };
